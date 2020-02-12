@@ -1,22 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hello Rigo with Vanilla.js</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-        <link rel="shortcut icon" href="./4geeks.ico"></head>
-    <body>
-        <div class="container-fluid text-center">
-            <h1 class="mt-5">Hello Rigo!</h1>
-            <img src="./rigo-baby.jpg"></img>
-            <p class="alert alert-warning mt-4">If this text is <b>not</b> centered and <b>yellow</b>, you probably have an error</p>
-            <div class="fixed-bottom p-4">
-                Made with ❤️ by <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Card</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="./4geeks.ico" />
+  </head>
+
+  <body>
+    <!--<div class="container-fluid text-center">-->
+    <div class="container-fluid text-center bg-white col-3 rounded my-2">
+      <!---Button-->
+      <div class="two-cards">
+        <div class="buttonContainer ">
+          <button class="reload">Click me</button>
         </div>
+        <!--cardBody-->
+        <div class="card" id="cardMain">
+          <div class="upper-number">
+            <span>7</span>
+          </div>
+          <div class="symbol">
+            <span>&#9829;</span>
+          </div>
+          <div class="lower-number">
+            <span>7</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script>
+      let buttonVar = document.querySelector(".reload");
+      buttonVar.addEventListener("click", theButtonWasClicked);
 
-        <!-- do not remove this bundle.js tag -->
-        <script type="text/javascript" src="./bundle.js"></script></body>
+      function theButtonWasClicked() {
+        let rank = [
+          "A",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "J",
+          "Q",
+          "K"
+        ];
+        let types = ["&clubs;", "&diams;", "&hearts;", "&spades;"];
+
+        let randomType = Math.floor(Math.random() * types.length);
+        let randomRank = Math.floor(Math.random() * 12);
+        let together = types[randomType];
+
+        console.log(randomType);
+
+        let theSymbol = document.querySelector(".symbol");
+        theSymbol.innerHTML = "<span>" + together + "</span>";
+
+        if (randomType == 0 || randomType == 3) {
+          document.getElementById("cardMain").style.color = "black";
+        } else {
+          document.getElementById("cardMain").style.color = "red";
+        }
+
+        let theUpperNumber = document.querySelector(".upper-number");
+        theUpperNumber.innerHTML = "<span>" + rank[randomRank] + "</span>";
+
+        let theLowerNumber = document.querySelector(".lower-number");
+        theLowerNumber.innerHTML = "<span>" + rank[randomRank] + "</span>";
+      }
+    </script>
+
+    <script type="text/javascript" src="./bundle.js"></script>
+
+    <!-- do not remove this bundle.js tag -->
+  </body>
 </html>
